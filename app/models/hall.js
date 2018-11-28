@@ -36,6 +36,16 @@ const mongoose = require("mongoose");
           require:true
       }
   });
+
+hallSchema.post('save',function(next){
+    let hallId = this._id;
+    let categoryId= this.category;
+    Category.findById(categoryId).populate('category').then((category)=>{
+        category.halls.push(hallId);
+        category.save();
+    })
+})
+
   let Hall = mongoose.model("Hall",hallSchema);
 
   module.exports ={

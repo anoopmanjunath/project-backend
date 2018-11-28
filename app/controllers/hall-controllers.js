@@ -27,16 +27,12 @@ router.post('/', (req, res) => {
 // })
 
 
-// router.get('/hall/:id',(req,res) =>  {
-//  let categories = req.params.id;
-//  Category.find({ category :  }).then((category) => {
-//      res.send(category);
-//  }).catch((err) =>{
-//     res.send(err);
-//  })
-// })
-
-
+router.get('/:id',(req,res)=>{
+    let id=req.params.id;
+    Category.findById(id).populate('halls').then((category)=>{
+        res.send(category);
+    })
+})
 
 module.exports = {
     hallController: router
