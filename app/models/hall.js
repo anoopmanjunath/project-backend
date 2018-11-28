@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
       },
       category: {
        type: Schema.Types.ObjectId,
-       ref: "Category"
+       ref: 'Category'
       },
       description: {
           type:String,
@@ -39,8 +39,11 @@ const mongoose = require("mongoose");
 
 hallSchema.post('save',function(next){
     let hallId = this._id;
+    //console.log(hallId);
     let categoryId= this.category;
+//console.log(categoryId);
     Category.findById(categoryId).populate('category').then((category)=>{
+//console.log(Category)
         category.halls.push(hallId);
         category.save();
     })
