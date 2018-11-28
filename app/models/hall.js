@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
   const Schema = mongoose.Schema;
+  const {Category} = require('../models/category');
 
 
   const hallSchema=new Schema({
@@ -37,19 +38,20 @@ const mongoose = require("mongoose");
       }
   });
 
+  let Hall = mongoose.model("Hall",hallSchema);
+
 hallSchema.post('save',function(next){
     let hallId = this._id;
-    //console.log(hallId);
+    console.log(hallId);
     let categoryId= this.category;
-//console.log(categoryId);
-    Category.findById(categoryId).populate('category').then((category)=>{
-//console.log(Category)
+console.log(categoryId);
+    Category.findById(categoryId).populate('halls').then((category)=>{
+console.log(category)
         category.halls.push(hallId);
         category.save();
     })
 })
 
-  let Hall = mongoose.model("Hall",hallSchema);
 
   module.exports ={
       Hall
