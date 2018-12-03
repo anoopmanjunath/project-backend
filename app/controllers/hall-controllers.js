@@ -15,7 +15,22 @@ router.post('/', (req, res) => {
     })
 })
 
+router.get('/:id',(req,res)=>{
+    let id = req.params.id;
+    Hall.findById(id).then((hall)=>{
+        res.send(hall);
+    }).catch((err)=>{
+        res.send(err);
+    })
+})
 
+router.get('/', (req, res) => {           
+    Hall.find().then((halls) => { 
+        res.send(halls);              
+    }).catch((err) => {                   
+        res.send(err);                    
+    });                                   
+}); 
 // router.get('/categories/:id',(req,res) =>{
 //     let categories = req.params.id;
 //     Category.find({ category : categories })

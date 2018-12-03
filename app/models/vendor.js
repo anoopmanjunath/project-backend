@@ -2,15 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const VendorSchema = new Schema({
-    userName: {
+    name: {
         type: String,
         required: true,
         minLength : 3,
         maxLength : 15
-
-    
     },
-    companyName : {
+    company : {
         type: String,
         required: true,
     },
@@ -23,6 +21,11 @@ const VendorSchema = new Schema({
     address: {
         type: String,
         required: true
+    },
+   
+    mobile: {
+        type: String,
+        required:true
     }
 
     

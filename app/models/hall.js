@@ -42,11 +42,11 @@ const mongoose = require("mongoose");
 
 hallSchema.post('save',function(next){
     let hallId = this._id;
-    console.log(hallId);
+    //console.log(hallId);
     let categoryId= this.category;
-console.log(categoryId);
+//console.log(categoryId);
     Category.findById(categoryId).populate('halls').then((category)=>{
-console.log(category)
+//console.log(category)
         category.halls.push(hallId);
         category.save();
     })
